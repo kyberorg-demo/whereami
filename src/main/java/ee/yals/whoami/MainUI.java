@@ -4,6 +4,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.flow.spring.annotation.UIScope;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 import ee.yals.whoami.res.R;
@@ -15,6 +16,7 @@ import java.net.UnknownHostException;
 @Theme(value = Lumo.class, variant = Lumo.DARK)
 @Route("")
 @SpringComponent
+@UIScope
 public class MainUI extends VerticalLayout {
 
     private Label hostnameLine;
