@@ -1,19 +1,40 @@
 @Library('common-pipe@0.0.4')_
 
 pipeline {
-agent any
+  agent {
+    docker {
+      reuseNode true
+      image 'kyberorg/jobbari:1.5.0'
+      args '-u root --privileged'
+    }
 
-stages {
-  steps {
-    stage ('Demo') {
-       echo 'Hello'
-       one(terv)
-    } //Demo end
-  } //steps
- } //stages
- 
- environment {
-    terv = 'HabaHaba'
- } //env
+  }
+  stages {
+    stage('Init n info') {
+      parallel {
+        stage('Runner info') {
+          steps {
+            sh ''' #### Gathering info ####
+            set +x set +e 
+            echo 'Hello'
+'''
+          }
+        }
+        stage('Git info') {
+          steps {
+            sh '''##### Preparing git info #####
+set +x set +e echo ${GIT_COMMIT} > COMMIT 
 
+'''
+          }
+        }
+      }
+    }
+  } //stages
+  environment {
+    PROJECT = 'Who Am I'
+    DOCKER_REPO = 'kyberorg/whoami'
+    DOCKER_USER = 'kyberorg'
+    DOCKER_HUB = credentials('docker-hub')
+  }
 }
