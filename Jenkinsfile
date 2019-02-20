@@ -7,7 +7,14 @@ pipeline {
     }
   }
   
-  stages {
+  environment {
+    PROJECT = 'Who Am I'
+    DOCKER_REPO = 'kyberorg/whoami'
+    DOCKER_USER = 'kyberorg'
+    DOCKER_HUB = credentials('docker-hub')
+}
+  
+ stages {
     stage('Init n info') {
       steps {
         sh ''' #### Gathering info ####
@@ -51,21 +58,29 @@ set +e
 echo ${GIT_COMMIT}
 echo $BRANCH_NAME
 
-
-
 echo "TODO to be done"
 
 '''
-      }
+      } //End 'Init n info'
     
     }
-  }
-  
-  environment {
-    PROJECT = 'Who Am I'
-    DOCKER_REPO = 'kyberorg/whoami'
-    DOCKER_USER = 'kyberorg'
-    DOCKER_HUB = credentials('docker-hub')
-}
+   stage('Test') {
+     steps {
+        timeout(time: 7) {
+          sh 'mvn test -B'
+        }
+        
+        junit(testResults: 'target/surefire-reports/**/*.xml', allowEmptyResults: true)
+     } //end steps Test
+   } //end Test
+   
+   stage ('Build') {
+     steps {
+       sh 'mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V'
+       sh 'pwd && chmod ugo+w -R .'
+     } //end steps Build
+   } //end Build
+   
+  } //end stages
   
 }
