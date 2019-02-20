@@ -1,4 +1,4 @@
-@Library('common-pipe@0.1.3')_
+@Library('common-pipe@0.1.4')_
 
 pipeline {
   agent {
@@ -18,7 +18,7 @@ pipeline {
             set +x set +e 
             echo 'Hello'
 '''
-          one(terv)
+          runnerInfo()
           }
         }
         stage('Git info') {
