@@ -1,4 +1,4 @@
-@Library('common-pipe@0.2.2')_
+@Library('common-pipe@0.2.3')_
 
 pipeline {
   agent {
@@ -16,6 +16,7 @@ pipeline {
           steps {
             toolsInfo()
             networkStatus()
+            test()
           }
         }
         stage('Git info') {
