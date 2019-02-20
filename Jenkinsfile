@@ -1,4 +1,4 @@
-@Library('common-pipe@0.2.1')_
+@Library('common-pipe@0.2.2')_
 
 pipeline {
   agent {
@@ -14,7 +14,7 @@ pipeline {
       parallel {
         stage('Runner info') {
           steps {
-            runnerInfo()
+            toolsInfo()
             networkStatus()
           }
         }
