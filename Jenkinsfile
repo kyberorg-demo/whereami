@@ -1,4 +1,4 @@
-@Library('common-pipe@0.2.3')_
+@Library('common-pipe@0.2.4')_
 
 pipeline {
   agent {
@@ -22,7 +22,7 @@ pipeline {
         stage('Git info') {
           steps {
             sh '''##### Preparing git info #####
-set +x set +e echo ${GIT_COMMIT} > COMMIT 
+ echo ${GIT_COMMIT} > COMMIT 
 
 '''
           }
