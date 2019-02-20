@@ -14,9 +14,7 @@ pipeline {
       parallel {
         stage('Runner info') {
           steps {
-            toolsInfo()
-            networkStatus()
-            test()
+           runnerStatus()
           }
         }
         stage('Git info') {
