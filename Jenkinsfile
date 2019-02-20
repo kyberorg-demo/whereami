@@ -76,6 +76,37 @@ echo "TAG: ${TAG}"
         sh 'pwd && chmod ugo+w -R .'
       }
     }
+    stage('Docker image') {
+      steps {
+        sh '''### Docker TAG ### set +x
+set +e
+case ${GIT_BRANCH} in
+      master) DOCKER_TAG="stable" ;;
+      trunk) DOCKER_TAG="latest" ;;
+       PR-*) DOCKER_TAG="${GIT_BRANCH}" ;;
+          *) DOCKER_TAG="${GIT_BRANCH}-latest" ;;
+esac
+ 
+echo "Docker Tag: ${DOCKER_TAG}"
+echo ${DOCKER_TAG} > DOCKER_TAG
+chmod ugo+w DOCKER_TAG
+export DOCKER_TAG=${DOCKER_TAG}
+cp DOCKER_TAG DOCKER_TAG.txt
+'''
+        archiveArtifacts 'DOCKER_TAG.txt'
+        retry(count: 3) {
+          sh '''### Create Docker image ###
+
+set +x 
+set +e
+service docker start
+DOCKER_TAG=`cat DOCKER_TAG`
+echo "Building Docker image with: $DOCKER_TAG"
+docker build -t $DOCKER_REPO:$DOCKER_TAG .'''
+        }
+
+      }
+    }
   }
   environment {
     PROJECT = 'Who Am I'
