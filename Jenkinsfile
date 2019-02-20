@@ -19,6 +19,7 @@ pipeline {
             echo 'Hello'
 '''
           runnerInfo()
+          networkStatus()
           }
         }
         stage('Git info') {
