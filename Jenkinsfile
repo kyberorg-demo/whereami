@@ -1,4 +1,4 @@
-@Library('common-pipe@0.1.4')_
+@Library('common-pipe@0.2.0')_
 
 pipeline {
   agent {
@@ -14,12 +14,8 @@ pipeline {
       parallel {
         stage('Runner info') {
           steps {
-            sh ''' #### Gathering info ####
-            set +x set +e 
-            echo 'Hello'
-'''
-          runnerInfo()
-          networkStatus()
+            runnerInfo()
+            networkStatus()
           }
         }
         stage('Git info') {
