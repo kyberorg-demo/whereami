@@ -5,19 +5,14 @@ pipeline {
       image 'kyberorg/jobbari:1.5.0'
       args '-u root --privileged'
     }
+
   }
-  
-  environment {
-    PROJECT = 'Who Am I'
-    DOCKER_REPO = 'kyberorg/whoami'
-    DOCKER_USER = 'kyberorg'
-    DOCKER_HUB = credentials('docker-hub')
-}
-  
- stages {
+  stages {
     stage('Init n info') {
-      steps {
-        sh ''' #### Gathering info ####
+      parallel {
+        stage('Runner info') {
+          steps {
+            sh ''' #### Gathering info ####
         
 set +x
 echo "Starting building ${PROJECT}"
@@ -48,39 +43,44 @@ echo "Docker version: ${DV}"
 echo ""
 echo "Maven version: ${MV}"
 '''
-
-sh ''' #### Git info ####
-
-set +x
-set +e
-
-
-echo ${GIT_COMMIT}
-echo $BRANCH_NAME
-
-echo "TODO to be done"
-
+          }
+        }
+        stage('Git info') {
+          steps {
+            sh '''##### Preparing git info #####
+set +x set +e echo ${GIT_COMMIT} > COMMIT 
+      echo $BRANCH_NAME > TAG 
+echo ""
+echo "" echo "### Git info ###"
+COMMIT=`cat COMMIT`
+TAG=`cat TAG`
+echo "COMMIT: ${COMMIT}"           
+echo "TAG: ${TAG}" 
 '''
-      } //End 'Init n info'
-    
+          }
+        }
+      }
     }
-   stage('Test') {
-     steps {
+    stage('Test') {
+      steps {
         timeout(time: 7) {
           sh 'mvn test -B'
         }
-        
+
         junit(testResults: 'target/surefire-reports/**/*.xml', allowEmptyResults: true)
-     } //end steps Test
-   } //end Test
-   
-   stage ('Build') {
-     steps {
-       sh 'mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V'
-       sh 'pwd && chmod ugo+w -R .'
-     } //end steps Build
-   } //end Build
-   
-  } //end stages
-  
+      }
+    }
+    stage('Build') {
+      steps {
+        sh 'mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V'
+        sh 'pwd && chmod ugo+w -R .'
+      }
+    }
+  }
+  environment {
+    PROJECT = 'Who Am I'
+    DOCKER_REPO = 'kyberorg/whoami'
+    DOCKER_USER = 'kyberorg'
+    DOCKER_HUB = credentials('docker-hub')
+  }
 }
