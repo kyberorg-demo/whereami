@@ -1,4 +1,4 @@
-@Library('common-pipe@0.0.3')_
+@Library('common-pipe@0.0.4')_
 
 stage ('Demo') {
     echo 'Hello'
