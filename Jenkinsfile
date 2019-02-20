@@ -47,6 +47,12 @@ sh ''' #### Git info ####
 set +x
 set +e
 
+
+echo ${GIT_COMMIT}
+echo $BRANCH_NAME
+
+
+
 echo "TODO to be done"
 
 '''
