@@ -18,6 +18,7 @@ pipeline {
             set +x set +e 
             echo 'Hello'
 '''
+          one(terv)
           }
         }
         stage('Git info') {
@@ -36,5 +37,6 @@ set +x set +e echo ${GIT_COMMIT} > COMMIT
     DOCKER_REPO = 'kyberorg/whoami'
     DOCKER_USER = 'kyberorg'
     DOCKER_HUB = credentials('docker-hub')
+    terv = 'HabaHaba'
   }
 }
