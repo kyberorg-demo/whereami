@@ -42,8 +42,10 @@ pipeline {
     } //stage Build end
     stage('Create Docker image') {
       steps {
-        String dockerTag = makeDockerTag();
-        makeDockerImage(dockerTag);
+        script {
+          String dockerTag = makeDockerTag();
+          makeDockerImage(dockerTag);
+        } //script end
       } //steps
     } //stage Create Docker image end
   } //stages
