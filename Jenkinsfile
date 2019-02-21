@@ -24,6 +24,7 @@ pipeline {
         } 
       } //parallel end
     } //init n info stage
+
     stage('Test') {
       steps {
         timeout(time: 7) {
@@ -32,12 +33,13 @@ pipeline {
         junit(testResults: 'target/surefire-reports/**/*.xml', allowEmptyResults: true)
       } //steps end
     } //stage test end
+
     stage('Build') {
       steps {
         sh label:'Maven package', script:'mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V'
         sh label:'Make write for next step', script:'chmod ugo+w -R .'
       } //steps end
-    } stage Build end
+    } //stage Build end
 
   } //stages
   environment {
@@ -45,5 +47,5 @@ pipeline {
     DOCKER_REPO = 'kyberorg/whoami'
     DOCKER_USER = 'kyberorg'
     DOCKER_HUB = credentials('docker-hub')
-  }
-}
+  } //environment end
+} //pipeline end
