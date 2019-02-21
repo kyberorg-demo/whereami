@@ -1,4 +1,4 @@
-@Library('common-pipe@0.6.1')_
+@Library('common-pipe@0.6.3')_
 
 pipeline {
   agent {
@@ -28,7 +28,8 @@ pipeline {
     stage('Test') {
       steps {
         timeout(time: 7) {
-          sh label:'Maven Test', script:'mvn test -B'
+          //sh label:'Maven Test', script:'mvn test -B'
+          Maven.test()
         }
         junit(testResults: 'target/surefire-reports/**/*.xml', allowEmptyResults: true)
       } //steps end
