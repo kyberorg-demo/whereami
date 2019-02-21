@@ -1,4 +1,4 @@
-@Library('common-pipe@0.5.1')_
+@Library('common-pipe@0.5.2')_
 
 pipeline {
   agent {
@@ -17,12 +17,9 @@ pipeline {
            runnerStatus()
           }
         }
-        stage('Git info') {
+        stage('Build info') {
           steps {
-            sh '''##### Preparing git info #####
- echo ${GIT_COMMIT} > COMMIT 
-
-'''
+             buildInfo() 
           }
         }
       }
@@ -33,6 +30,5 @@ pipeline {
     DOCKER_REPO = 'kyberorg/whoami'
     DOCKER_USER = 'kyberorg'
     DOCKER_HUB = credentials('docker-hub')
-    terv = 'HabaHaba'
   }
 }
