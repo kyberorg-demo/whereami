@@ -21,9 +21,24 @@ pipeline {
           steps {
              buildInfo() 
           }
+        } 
+      } //parallel end
+    } //init n info stage
+    stage('Test') {
+      steps {
+        timeout(time: 7) {
+          sh label:'Maven Test', script:'mvn test -B'
         }
-      }
-    }
+        junit(testResults: 'target/surefire-reports/**/*.xml', allowEmptyResults: true)
+      } //steps end
+    } //stage test end
+    stage('Build') {
+      steps {
+        sh label:'Maven package', script:'mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V'
+        sh label:'Make write for next step', script:'chmod ugo+w -R .'
+      } //steps end
+    } stage Build end
+
   } //stages
   environment {
     PROJECT = 'Who Am I'
