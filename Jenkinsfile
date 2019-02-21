@@ -1,4 +1,4 @@
-@Library('common-pipe@0.5.2')_
+@Library('common-pipe@0.6.0')_
 
 pipeline {
   agent {
@@ -40,7 +40,12 @@ pipeline {
         sh label:'Make write for next step', script:'chmod ugo+w -R .'
       } //steps end
     } //stage Build end
-
+    stage('Create Docker image') {
+      steps {
+        String dockerTag = makeDockerTag();
+        makeDockerImage(dockerTag);
+      } //steps
+    } //stage Create Docker image end
   } //stages
   environment {
     PROJECT = 'Who Am I'
