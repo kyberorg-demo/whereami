@@ -1,4 +1,4 @@
-@Library('common-pipe@0.6.12')_
+@Library('common-pipe@0.6.13')_
 
 pipeline {
   agent {
@@ -38,7 +38,7 @@ pipeline {
       steps {
         //sh label:'Maven package', script:'mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V'
         mavenBuild()
-        sh label:'Make write for next step', script:'chmod ugo+w -R .'
+        sh label:'Make all write for cleanup', script:'chmod ugo+w -R .'
       } //steps end
     } //stage Build end
     stage('Create Docker image') {
