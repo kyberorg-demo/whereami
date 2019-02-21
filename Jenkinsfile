@@ -1,4 +1,4 @@
-@Library('common-pipe@0.6.15')_
+@Library('common-pipe@0.7.0')_
 
 pipeline {
   agent {
@@ -36,7 +36,6 @@ pipeline {
 
     stage('Build') {
       steps {
-        //sh label:'Maven package', script:'mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V'
         mavenBuild()
         sh label:'Make all write for cleanup', script:'chmod ugo+w -R .'
       } //steps end
