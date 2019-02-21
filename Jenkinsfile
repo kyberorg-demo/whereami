@@ -1,4 +1,4 @@
-@Library('common-pipe@0.4.5')_
+@Library('common-pipe@0.4.6')_
 
 pipeline {
   agent {
