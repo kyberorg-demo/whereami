@@ -1,4 +1,4 @@
-@Library('common-pipe@0.8.7')_
+@Library('common-pipe@0.9.0')_
 
 pipeline {
   agent {
@@ -12,18 +12,12 @@ pipeline {
   stages {
     stage('Execution info') {
       parallel {
-        stage('Runner info') {
-          steps {
-           runnerStatus()
+        steps {
+           runnerStatus();
+           buildInfo();
           }
-        }
-        stage('Build info') {
-          steps {
-             buildInfo() 
-          }
-        } 
       } //parallel end
-    } //init n info stage
+    } // Stage 'Execution info' end 
 
     stage('Test') {
       steps {
@@ -43,17 +37,10 @@ pipeline {
 
     stage('Docker: Build and Push') {
       steps {
-        dockerStart()
-        dockerLogin(env.DOCKER_REPO_CREDS_ID)
-
-        makeDockerImage(env.DOCKER_REPO, makeDockerTag());
-        
-        //script {
-        //  String dockerTag = makeDockerTag();
-        //  makeDockerImage(env.DOCKER_REPO, dockerTag);
-        //}
-        
-        dockerPush(env.DOCKER_REPO)
+        dockerStart();
+        dockerLogin(env.DOCKER_REPO_CREDS_ID);
+        dockerBuild(env.DOCKER_REPO, getDockerTag()); 
+        dockerPush(env.DOCKER_REPO);
       } //steps end
     } //stage 'Docker: Build and Push' end
 
