@@ -1,4 +1,4 @@
-@Library('common-pipe@0.8.4')_
+@Library('common-pipe@0.8.6')_
 
 pipeline {
   agent {
@@ -43,6 +43,7 @@ pipeline {
 
     stage('Docker: Build and Push') {
       steps {
+        dockerStart()
         dockerLogin(env.DOCKER_REPO_CREDS_ID)
 
         script {
