@@ -11,14 +11,10 @@ pipeline {
   }
   stages {
     stage('Execution info') {
-      parallel {
-        stage('') {
-          steps {
-           runnerStatus();
-           buildInfo();
-          }
-        }
-      } //parallel end
+      steps {
+        runnerStatus();
+        buildInfo();
+      }
     } // Stage 'Execution info' end 
 
     stage('Test') {
