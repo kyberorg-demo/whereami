@@ -17,21 +17,17 @@ pipeline {
       }
     } // Stage 'Execution info' end 
 
-    stage('Test') {
+    stage('JavaApp: Build and Test') {
       steps {
         timeout(time: 7) {
           mavenTest()
         }
         junit(testResults: 'target/surefire-reports/**/*.xml', allowEmptyResults: true)
-      } //steps end
-    } //stage test end
-
-    stage('Build') {
-      steps {
         mavenBuild()
         sh label:'Make all write for cleanup', script:'chmod ugo+w -R .'
+
       } //steps end
-    } //stage Build end
+    } //stage 'JavaApp: Build and Test' end
 
     stage('Docker: Build and Push') {
       steps {
