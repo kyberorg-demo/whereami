@@ -46,10 +46,12 @@ pipeline {
         dockerStart()
         dockerLogin(env.DOCKER_REPO_CREDS_ID)
 
-        script {
-          String dockerTag = makeDockerTag();
-          makeDockerImage(env.DOCKER_REPO, dockerTag);
-        }
+        makeDockerImage(env.DOCKER_REPO, makeDockerTag());
+        
+        //script {
+        //  String dockerTag = makeDockerTag();
+        //  makeDockerImage(env.DOCKER_REPO, dockerTag);
+        //}
         
         dockerPush(env.DOCKER_REPO)
       } //steps end
