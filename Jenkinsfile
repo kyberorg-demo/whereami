@@ -50,7 +50,7 @@ pipeline {
     } //stage Create Docker image end
     stage('Push image to Repo') {
       steps {
-        dockerPush(env['DOCKER_REPO'], DOCKER_REPO_USERPASS_ID = 'docker-hub')
+        dockerPush(env['DOCKER_REPO'], DOCKER_REPO_USERPASS_ID)
       } //steps end
     } //stage Push image end
   } //stages
