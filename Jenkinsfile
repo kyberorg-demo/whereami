@@ -40,16 +40,20 @@ pipeline {
         sh label:'Make all write for cleanup', script:'chmod ugo+w -R .'
       } //steps end
     } //stage Build end
+
     stage('Docker: Build and Push') {
       steps {
         dockerLogin(env.DOCKER_REPO_CREDS_ID)
+
         script {
           String dockerTag = makeDockerTag();
           makeDockerImage(env['DOCKER_REPO'], dockerTag);
         }
+        
         dockerPush(env.DOCKER_REPO)
       } //steps end
     } //stage 'Docker: Build and Push' end
+
   } //stages
   environment {
     DOCKER_REPO = 'kyberorg/whoami'
