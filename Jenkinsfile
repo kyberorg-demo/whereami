@@ -1,4 +1,4 @@
-@Library('common-pipe@0.8.2')_
+@Library('common-pipe@0.8.3')_
 
 pipeline {
   agent {
@@ -47,7 +47,7 @@ pipeline {
 
         script {
           String dockerTag = makeDockerTag();
-          makeDockerImage(env['DOCKER_REPO'], dockerTag);
+          makeDockerImage(env.DOCKER_REPO, dockerTag);
         }
         
         dockerPush(env.DOCKER_REPO)
