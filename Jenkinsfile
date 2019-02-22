@@ -50,14 +50,12 @@ pipeline {
     } //stage Create Docker image end
     stage('Push image to Repo') {
       steps {
-        dockerPush(env['DOCKER_REPO'], 'docker-hub')
+        dockerPush(env['DOCKER_REPO'], DOCKER_REPO_USERPASS_ID = 'docker-hub')
       } //steps end
     } //stage Push image end
   } //stages
   environment {
-    PROJECT = 'Who Am I'
     DOCKER_REPO = 'kyberorg/whoami'
-    DOCKER_USER = 'kyberorg'
-    DOCKER_HUB = credentials('docker-hub')
+    DOCKER_REPO_USERPASS_ID = 'docker-hub'
   } //environment end
 } //pipeline end
