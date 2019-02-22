@@ -44,7 +44,7 @@ pipeline {
       steps {
         script {
           String dockerTag = makeDockerTag();
-          makeDockerImage(dockerRepo: env['DOCKER_REPO'], dockerTag: dockerTag);
+          makeDockerImage(env['DOCKER_REPO'], dockerTag);
         } //script end
       } //steps
     } //stage Create Docker image end
