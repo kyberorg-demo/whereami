@@ -1,4 +1,4 @@
-@Library('common-pipe@0.9.0')_
+@Library('common-pipe@0.9.1')_
 
 pipeline {
   agent {
@@ -20,11 +20,11 @@ pipeline {
     stage('JavaApp: Build and Test') {
       steps {
         timeout(time: 7) {
-          mavenTest()
+          mavenTest();
         }
-        junit(testResults: 'target/surefire-reports/**/*.xml', allowEmptyResults: true)
-        mavenBuild()
-        sh label:'Make all write for cleanup', script:'chmod ugo+w -R .'
+        junit(testResults: 'target/surefire-reports/**/*.xml', allowEmptyResults: true);
+        mavenBuild();
+        sh label:'[Make workspace writeable for correct cleanup]', script:'chmod ugo+w -R .';
 
       } //steps end
     } //stage 'JavaApp: Build and Test' end
