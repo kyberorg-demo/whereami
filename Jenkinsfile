@@ -1,4 +1,4 @@
-@Library('common-pipe@0.7.7')_
+@Library('common-pipe@0.7.10')_
 
 pipeline {
   agent {
@@ -48,6 +48,11 @@ pipeline {
         } //script end
       } //steps
     } //stage Create Docker image end
+    stage('Push image to Repo') {
+      steps {
+        dockerPush(env['DOCKER_REPO'], env['DOCKER_HUB'])
+      } //steps end
+    } //stage Push image end
   } //stages
   environment {
     PROJECT = 'Who Am I'
