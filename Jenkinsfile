@@ -1,4 +1,4 @@
-@Library('common-pipe@0.8.0')_
+@Library('common-pipe@0.8.1')_
 
 pipeline {
   agent {
@@ -40,7 +40,7 @@ pipeline {
         sh label:'Make all write for cleanup', script:'chmod ugo+w -R .'
       } //steps end
     } //stage Build end
-    stage('Docker Image Push') {
+    stage('Docker Build \'n\' Push Image') {
       steps {
         script {
           String dockerTag = makeDockerTag();
