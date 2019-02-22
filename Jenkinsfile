@@ -1,4 +1,4 @@
-@Library('common-pipe@0.8.1')_
+@Library('common-pipe@0.8.2')_
 
 pipeline {
   agent {
@@ -10,7 +10,7 @@ pipeline {
 
   }
   stages {
-    stage('Init n info') {
+    stage('Execution info') {
       parallel {
         stage('Runner info') {
           steps {
@@ -40,19 +40,19 @@ pipeline {
         sh label:'Make all write for cleanup', script:'chmod ugo+w -R .'
       } //steps end
     } //stage Build end
-    stage('Docker Build \'n\' Push Image') {
+    stage('Docker: Build and Push') {
       steps {
+        dockerLogin(env.DOCKER_REPO_CREDS_ID)
         script {
           String dockerTag = makeDockerTag();
           makeDockerImage(env['DOCKER_REPO'], dockerTag);
-        } //script end
-        dockerLogin(env.DOCKER_REPO_CREDENTIALS_ID)
-        dockerPush(env['DOCKER_REPO'])
+        }
+        dockerPush(env.DOCKER_REPO)
       } //steps end
-    } //stage Push image end
+    } //stage 'Docker: Build and Push' end
   } //stages
   environment {
     DOCKER_REPO = 'kyberorg/whoami'
-    DOCKER_REPO_CREDENTIALS_ID = 'docker-hub'
+    DOCKER_REPO_CREDS_ID = 'docker-hub'
   } //environment end
 } //pipeline end
