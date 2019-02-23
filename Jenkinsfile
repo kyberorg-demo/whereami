@@ -1,4 +1,4 @@
-@Library('common-pipe@0.9.12')_
+@Library('common-pipe@1.0.0')_
 
 pipeline {
   agent {
@@ -7,7 +7,6 @@ pipeline {
       image 'kyberorg/jobbari:1.5.0'
       args '-u root --privileged'
     }
-
   }
   stages {
     stage('Execution info') {
@@ -23,7 +22,7 @@ pipeline {
           mavenTest();
         }
         testReport();
-        mavenBuild();
+        mavenBuild(); //use 'addJavadoc: true' for adding JavaDoc, use 'runTestsAsWell: true' for tests
         writableWorkspace();
 
       } //steps end
@@ -33,7 +32,7 @@ pipeline {
       steps {
         dockerStart();
         dockerLogin(env.DOCKER_REPO_CREDS_ID);
-        dockerBuild(env.DOCKER_REPO, getDockerTag()); 
+        dockerBuild(env.DOCKER_REPO, getDockerTag()); //for debug commit use: "useDebugTag: true" in getDockerTag()
         dockerPush(env.DOCKER_REPO);
       } //steps end
     } //stage 'Docker: Build and Push' end
@@ -42,5 +41,7 @@ pipeline {
   environment {
     DOCKER_REPO = 'kyberorg/whoami'
     DOCKER_REPO_CREDS_ID = 'docker-hub'
+    FOR_USER = 'kyberorg' //this should be equal to DockerHub user to make it sensitive and therefore hide commands
+    GIT_TAG = getGitTag();
   } //environment end
 } //pipeline end
