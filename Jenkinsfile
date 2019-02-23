@@ -1,4 +1,4 @@
-@Library('common-pipe@0.9.15')_
+@Library('common-pipe@0.9.16')_
 
 pipeline {
   agent {
@@ -31,7 +31,7 @@ pipeline {
 
     stage('Docker: Build and Push') {
       steps {
-        dockerStart(env.DOCKER_REPO);
+        dockerStart();
         dockerLogin(env.DOCKER_REPO_CREDS_ID);
         dockerBuild(env.DOCKER_REPO, getDockerTag()); 
         dockerPush(env.DOCKER_REPO);
