@@ -1,4 +1,4 @@
-@Library('common-pipe@0.9.20')_
+@Library('common-pipe@0.9.21')_
 
 pipeline {
   agent {
@@ -22,7 +22,7 @@ pipeline {
         timeout(time: 7) {
           mavenTest();
         }
-        //testReport();
+        testReport();
         mavenBuild();
         writableWorkspace();
 
