@@ -33,7 +33,7 @@ pipeline {
       steps {
         dockerStart();
         dockerLogin(env.DOCKER_REPO_CREDS_ID);
-        dockerBuild(env.DOCKER_REPO, getDockerTag()); 
+        dockerBuild(env.DOCKER_REPO, getDockerTag(useDebugTag: true)); 
         dockerPush(env.DOCKER_REPO);
       } //steps end
     } //stage 'Docker: Build and Push' end
