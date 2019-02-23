@@ -1,4 +1,4 @@
-@Library('common-pipe@0.10.18')_
+@Library('common-pipe@0.10.19')_
 
 pipeline {
   agent {
@@ -12,6 +12,9 @@ pipeline {
   stages {
     stage('Execution info') {
       steps {
+        script{
+          env['GIT_TAG'] = getGitTag();
+        }
         runnerStatus();
         buildInfo();
       }
