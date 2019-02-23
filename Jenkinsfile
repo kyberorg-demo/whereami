@@ -1,4 +1,4 @@
-@Library('common-pipe@0.9.16')_
+@Library('common-pipe@0.9.17')_
 
 pipeline {
   agent {
@@ -42,5 +42,6 @@ pipeline {
   environment {
     DOCKER_REPO = 'kyberorg/whoami'
     DOCKER_REPO_CREDS_ID = 'docker-hub'
+    FOR_USER = 'kyberorg' //this should be equal to Docker Hub User to make it sensitive and therefore hide commands
   } //environment end
 } //pipeline end
