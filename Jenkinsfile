@@ -1,4 +1,4 @@
-@Library('common-pipe@0.10.15')_
+@Library('common-pipe@0.10.16')_
 
 pipeline {
   agent {
@@ -43,6 +43,5 @@ pipeline {
     DOCKER_REPO = 'kyberorg/whoami'
     DOCKER_REPO_CREDS_ID = 'docker-hub'
     FOR_USER = 'kyberorg' //this should be equal to Docker Hub User to make it sensitive and therefore hide commands
-    GIT_TAG = env['GIT_TAG'];
   } //environment end
 } //pipeline end
