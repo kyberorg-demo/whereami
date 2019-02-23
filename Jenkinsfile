@@ -40,8 +40,9 @@ pipeline {
 
   } //stages
   environment {
+    GIT_TAG = getGitTag();
     DOCKER_REPO = 'kyberorg/whoami'
     DOCKER_REPO_CREDS_ID = 'docker-hub'
-    FOR_USER = 'kyberorg' //this should be equal to Docker Hub User to make it sensitive and therefore hide commands
+    FOR_USER = 'kyberorg' //this should be equal to DockerHub user to make it sensitive and therefore hide commands
   } //environment end
 } //pipeline end
