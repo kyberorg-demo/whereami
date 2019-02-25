@@ -1,4 +1,4 @@
-@Library('common-pipe@2.0.0-dev1')_
+@Library('common-pipe@2.0.0-dev2')_
 
 commonPipeline(
     
