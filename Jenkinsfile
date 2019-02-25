@@ -1,4 +1,4 @@
-@Library('common-pipe@2.0.0-dev9')_
+@Library('common-pipe@2.0.0-dev10')_
 
 commonPipeline(
     dockerRepo: 'kyberorg/whoami',
