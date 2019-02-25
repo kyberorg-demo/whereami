@@ -1,5 +1,5 @@
 @Library('common-pipe@1-shared-pipeline')_
 
 sharedPipeline(
-    param: 'hello'
+    agent: [image: 'kyberorg/jobbari', version: '1.5.0']
 )
