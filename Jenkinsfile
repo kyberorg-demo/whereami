@@ -5,5 +5,7 @@ javaDockerPipeline(
     dockerRepo: 'kyberorg/whoami',
     hubCredentialsId: 'docker-hub',
     hubUser: 'kyberorg',
+    mavenTestsTimeout: 1, //minutes 
     mavenBuildOptions: [addJavadoc: false, runTestsAsWell: false]
+    useDebugTag: false
 )
