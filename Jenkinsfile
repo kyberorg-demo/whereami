@@ -1,6 +1,6 @@
-@Library('common-pipe@2.0.0-dev13')_
+@Library('common-pipe@1-shared-pipeline')_
 
-commonPipeline(
+javaDockerPipeline(
     dockerRepo: 'kyberorg/whoami',
     agent: [image: 'kyberorg/jobbari', version: '1.5.0']
 )
