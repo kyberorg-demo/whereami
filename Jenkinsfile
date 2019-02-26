@@ -6,6 +6,6 @@ javaDockerPipeline(
     hubCredentialsId: 'docker-hub',
     hubUser: 'kyberorg',
     mavenTestsTimeout: 1, //minutes 
-    mavenBuildOptions: [addJavadoc: false, runTestsAsWell: false]
+    mavenBuildOptions: [addJavadoc: false, runTestsAsWell: false],
     useDebugTag: false
 )
