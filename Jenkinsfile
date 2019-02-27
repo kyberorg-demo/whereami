@@ -4,7 +4,7 @@ javaDockerPipeline(
     agent: [image: 'kyberorg/jobbari', version: '1.5.0'],
     dockerRepo: 'kyberorg/whoami',
     hubCredentialsId: 'docker-hub',
-    hubUser: 'kyberorg',
+    //hubUser: 'kyberorg',
     skipMavenTests: true,
     mavenTestsTimeout: 1, //minutes 
     mavenBuildOptions: [addJavadoc: false, runTestsAsWell: false],
