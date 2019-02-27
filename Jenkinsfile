@@ -8,5 +8,5 @@ javaDockerPipeline(
     skipMavenTests: true,
     mavenTestsTimeout: 1, //minutes 
     mavenBuildOptions: [addJavadoc: false, runTestsAsWell: false],
-    useDebugTag: true
+    useDebugTag: false
 )
