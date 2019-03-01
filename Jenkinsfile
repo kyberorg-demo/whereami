@@ -6,5 +6,5 @@ glJavaDockerPipeline(
     gitlabConnectionId: 'gitlab',
     gitlabSecretToken: 'aaaaaa',
     hubUser: 'kyberorg',
-    skipMavenTests: true,
+    skipMavenTests: true
 )
