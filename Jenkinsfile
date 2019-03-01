@@ -1,6 +1,6 @@
 @Library('common-pipe@4-common-options')_
 
-glJavaDockerPipeline(
+javaDockerPipeline(
     dockerRepo: 'kyberorg/whoami',
     hubCredentialsId: 'docker-hub',
     gitlabConnectionId: 'gitlab',
