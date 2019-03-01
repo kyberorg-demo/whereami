@@ -1,4 +1,4 @@
-@Library('common-pipe@4-common-options')_
+@Library('common-pipe@6-print-params')_
 
 javaDockerPipeline(
     dockerRepo: 'kyberorg/whoami',
