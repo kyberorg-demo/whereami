@@ -1,8 +1,10 @@
-@Library('common-pipe@2.1.1')_
+@Library('common-pipe@3-gitlab-integration')_
 
-javaDockerPipeline(
+glJavaDockerPipeline(
     dockerRepo: 'kyberorg/whoami',
     hubCredentialsId: 'docker-hub',
+    gitlabConnectionId: 'gitlab',
+    gitlabSecretToken: 'aaaaaa'
     hubUser: 'kyberorg',
     skipMavenTests: true,
 )
