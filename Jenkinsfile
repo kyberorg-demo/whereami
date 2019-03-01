@@ -4,7 +4,7 @@ glJavaDockerPipeline(
     dockerRepo: 'kyberorg/whoami',
     hubCredentialsId: 'docker-hub',
     gitlabConnectionId: 'gitlab',
-    gitlabSecretToken: 'aaaaaa'
+    gitlabSecretToken: 'aaaaaa',
     hubUser: 'kyberorg',
     skipMavenTests: true,
 )
