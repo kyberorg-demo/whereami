@@ -7,4 +7,3 @@ glJavaDockerPipeline(
     hubUser: 'kyberorg',
     skipMavenTests: true
 )
-
