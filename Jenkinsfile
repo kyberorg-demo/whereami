@@ -1,4 +1,4 @@
-@Library('common-pipe@3-gitlab-integration')_
+@Library('common-pipe@4-common-options')_
 
 glJavaDockerPipeline(
     dockerRepo: 'kyberorg/whoami',
