@@ -6,5 +6,5 @@ javaDockerPipeline(
     gitlabConnectionId: 'gitlab',
     hubUser: 'kyberorg',
     skipMavenTests: true,
-    pipelineTimeout: time: 1, unit:'MINUTES'
+    pipelineTimeout: 1
 )
