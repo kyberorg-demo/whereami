@@ -1,4 +1,4 @@
-@Library('common-pipe@6-print-params')_
+@Library('common-pipe@5-allow-steps-override-or-add-remove')_
 
 javaDockerPipeline(
     dockerRepo: 'kyberorg/whoami',
