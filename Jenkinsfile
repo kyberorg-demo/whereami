@@ -7,8 +7,4 @@ javaDockerPipeline(
     hubUser: 'kyberorg',
     skipMavenTests: true,
 
-    preparationStep: {
-        echo "Custom step";
-    }
-
 )
