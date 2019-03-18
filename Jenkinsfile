@@ -11,7 +11,14 @@ javaDockerPipeline(
         new ee.yadev.pipe.steps.PreparationStep().runStep();
         sh label: "Preparation", script: "echo This is custom preparationStep";
     },
-    //executionInfoStep: {
-    //    new ee.yadev.pipe.steps.ExecutionInfoStep().buildInfo();
-    //}, 
+    executionInfoStep: {
+        new ee.yadev.pipe.steps.ExecutionInfoStep().buildInfo();
+    },
+    buildJavaAppStep: {
+        new ee.yadev.pipe.steps.BuildJavaAppStep().mavenBuild();
+
+    },
+    dockerStep: {
+        new ee.yadev.pipe.steps.DockerStep().dockerStart();
+    }, 
 )
