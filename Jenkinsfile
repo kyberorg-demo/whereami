@@ -6,5 +6,8 @@ javaDockerPipeline(
     gitlabConnectionId: 'gitlab',
     hubUser: 'kyberorg',
     skipMavenTests: true,
-
+    
+    preparationStep: {
+        sh label: "Test", script: "echo Custom";
+    }
 )
