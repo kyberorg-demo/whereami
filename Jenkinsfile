@@ -14,12 +14,4 @@ javaDockerPipeline(
     executionInfoStep: {
         new ee.yadev.pipe.steps.ExecutionInfoStep().buildInfo();
     },
-    buildJavaAppStep: {
-        new ee.yadev.pipe.steps.BuildJavaAppStep().mavenBuild();
-
-    },
-    dockerStep: {
-        new ee.yadev.pipe.steps.DockerStep().dockerStart();
-        new ee.yadev.pipe.steps.DockerStep().dockerLogin();
-    }, 
 )
