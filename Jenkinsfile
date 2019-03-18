@@ -8,7 +8,7 @@ javaDockerPipeline(
     skipMavenTests: true,
     
     preparationStep: {
-        PreparationStep().runStep();
+        new ee.yadev.pipe.stages.PreparationStep().runStep();
         
         sh label: "Test", script: "echo Custom";
     }
