@@ -20,5 +20,6 @@ javaDockerPipeline(
     },
     dockerStep: {
         new ee.yadev.pipe.steps.DockerStep().dockerStart();
+        new ee.yadev.pipe.steps.DockerStep().dockerLogin();
     }, 
 )
