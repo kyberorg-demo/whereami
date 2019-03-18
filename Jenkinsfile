@@ -10,5 +10,8 @@ javaDockerPipeline(
     preparationStep: {
         new ee.yadev.pipe.steps.PreparationStep().runStep();
         sh label: "Preparation", script: "echo This is custom preparationStep";
+    },
+    executionInfoStep: {
+        new ee.yadev.pipe.steps.ExecutionInfoStep().buildInfo();
     }, 
 )
