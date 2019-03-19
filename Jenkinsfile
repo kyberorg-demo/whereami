@@ -6,6 +6,7 @@ javaDockerPipeline(
     gitlabConnectionId: 'gitlab',
     hubUser: 'kyberorg',
     skipMavenTests: true,
+    stepTimeout: 1,
     
     preparationStep: {
         new ee.yadev.pipe.steps.PreparationStep().runStep();
