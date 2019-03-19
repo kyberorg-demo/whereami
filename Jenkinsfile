@@ -5,7 +5,7 @@ javaDockerPipeline(
     hubCredentialsId: 'docker-hub',
     gitlabConnectionId: 'gitlab',
     hubUser: 'kyberorg',
-    skipMavenTests: true,
+    skipMavenTests: false,
     stepTimeout: 1,
     
     preparationStep: {
