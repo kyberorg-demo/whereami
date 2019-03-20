@@ -1,6 +1,6 @@
 @Library('common-pipe@5-allow-steps-override-or-add-remove')_
 
-dasPipeline(
+buildPipeline(
     dockerRepo: 'kyberorg/whoami',
     hubCredentialsId: 'docker-hub',
     gitlabConnectionId: 'gitlab',
