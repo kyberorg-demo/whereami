@@ -5,7 +5,7 @@ buildPipeline(
     hubCredentialsId: 'docker-hub',
     gitlabConnectionId: 'gitlab',
     hubUser: 'kyberorg',
-    skipMavenTests: false,
+    skipMavenTests: true,
     stepTimeout: 3,
     
     preparationStep: {
