@@ -7,7 +7,7 @@ buildPipeline(
     hubUser: 'kyberorg',
     skipMavenTests: false,
     stepTimeout: 3,
-    verbose: true,
+    verbose: false,
     
     preparationStep: {
         new ee.yadev.pipe.steps.PreparationStep().runStep();
