@@ -1,8 +1,7 @@
-@Library('common-pipe@2.1.1')_
+@Library('common-pipe@2.3.3')_
 
-javaDockerPipeline(
-    dockerRepo: 'kyberorg/whoami',
+buildPipeline(
+    dockerRepo: 'kyberorg/whereami',
     hubCredentialsId: 'docker-hub',
     hubUser: 'kyberorg',
-    skipMavenTests: true,
 )
