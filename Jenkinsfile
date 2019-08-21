@@ -5,7 +5,8 @@ pipeline {
         stage('Vaadin') {
             steps {
                script {
-                 vaadin(prodModeProfile: 'production-mode',extraProfiles: 'noTesting')
+                 //vaadin(prodModeProfile: 'production-mode',extraProfiles: 'noTesting')
+                 vaadin(extraProfiles: 'noTesting')
                  //archiveArtifacts(artifacts: 'target/whereami.jar') 
                } 
             }
@@ -14,8 +15,8 @@ pipeline {
             steps {
                script {
                    def repo = 'kyberorg/whereami';
-                   //def tags = ['latest'];
-                   def tags = ['latest', 'debug'];
+                   def tags = ['latest'];
+                   //def tags = ['latest', 'debug'];
                    dockerBuild(registry: 'docker.io', repo: repo, tags: tags);
                    dockerLogin(creds: 'docker-hub');
                    dockerPush();
@@ -24,5 +25,13 @@ pipeline {
                } 
             }
         }
+        stage('Deploy') {
+            steps {
+               script {
+                 echo "IMPL"; 
+               } 
+            }
+        }
     }
+    
 }
