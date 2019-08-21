@@ -1,7 +1,14 @@
-@Library('common-pipe@2.3.3')_
-
-buildPipeline(
-    dockerRepo: 'kyberorg/whereami',
-    hubCredentialsId: 'docker-hub',
-    hubUser: 'kyberorg',
-)
+@Library('common-lib@master')_
+pipeline {
+    agent any;
+    stages {
+        stage('Vaadin') {
+            steps {
+               script {
+                 vaadin(prodModeProfile: 'production-mode', extraProfiles: 'noTesting', label: 'Build Vaadin in Prod Mode')
+                 archiveArtifacts(artifacts: 'target/whereami.jar') 
+               } 
+            }
+        }
+    }
+}
