@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy') {
             steps {
                script {
-                 echo "IMPL"; 
+                 deployToSwarm();
                } 
             }
         }
