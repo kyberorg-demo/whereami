@@ -38,6 +38,7 @@ pipeline {
                script {
                  String url = "https://kuka.yadev.eu"; 
                  smartWait(url: url);
+                 testApp(url: url);
                } 
             }
         }
