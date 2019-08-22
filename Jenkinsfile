@@ -28,7 +28,8 @@ pipeline {
         stage('Deploy') {
             steps {
                script {
-                 deployToSwarm();
+                 String hookUrl = "https://docker.yatech.eu/api/webhooks/3328ba5f-6fea-4a51-a2b0-902e9f5c9573";  
+                 deployToSwarm(hookUrl: hookUrl);
                } 
             }
         }
