@@ -33,6 +33,14 @@ pipeline {
                } 
             }
         }
+        stage('UI Tests') {
+            steps {
+               script {
+                 String url = "https://kuka.yadev.eu"; 
+                 smartWait(url: url);
+               } 
+            }
+        }
     }
     
 }
